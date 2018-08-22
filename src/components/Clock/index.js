@@ -20,11 +20,18 @@ export default class Clock extends React.Component {
     }
 
     render() {
-        console.log(this.time);
+        const props = this.props;
         return <ClockView
                 hours={this.time.hours()}
                 minutes={this.time.minutes()}
                 seconds={this.time.seconds()}
-                size='400'/>
+                {...props}
+                />
     }
 }
+
+Clock.propTypes = {
+    clockColor: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    size: PropTypes.string
+};

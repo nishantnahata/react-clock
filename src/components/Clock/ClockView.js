@@ -15,12 +15,12 @@ export class ClockView extends React.Component {
     };
 
     drawFace = (ctx, radius) => {
-        let grad;
         ctx.beginPath();
         ctx.arc(0, 0, radius, 0, 2*Math.PI);
         ctx.fillStyle = this.props.clockColor;
         ctx.fill();
-        grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+
+        let grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
         grad.addColorStop(0, this.props.backgroundColor);
         grad.addColorStop(0.5, this.props.clockColor);
         grad.addColorStop(1, this.props.backgroundColor);
@@ -90,16 +90,11 @@ export class ClockView extends React.Component {
         this.drawTime(this.ctx, this.radius);
     };
 
-    componentWillReceiveProps(nextProps, nextContext) {
-        if(this.ctx !== null && this.radius !== null) {
-            this.drawTime(this.ctx, this.radius);
-        }
-    }
-
     render() {
         return <div>
             <canvas id="clock" ref={(ref) => this.setUpClock(ref)}
-                    height='400' width='400' style={{backgroundColor: this.props.backgroundColor}} />
+                    height={this.props.size}
+                    width={this.props.size} style={{backgroundColor: this.props.backgroundColor}} />
         </div>;
     }
 }
@@ -109,10 +104,12 @@ ClockView.protoTypes = {
     minutes: PropTypes.number.isRequired,
     seconds: PropTypes.number.isRequired,
     backgroundColor: PropTypes.string.isRequired,
-    clockColor: PropTypes.string.isRequired
+    clockColor: PropTypes.string.isRequired,
+    size: PropTypes.string.isRequired
 };
 
 ClockView.defaultProps = {
     backgroundColor: '#333',
-    clockColor: 'white'
+    clockColor: 'white',
+    size: '400'
 };

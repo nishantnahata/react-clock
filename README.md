@@ -1,4 +1,6 @@
 # react-clock
+![React Clock](https://media.giphy.com/media/cJp4yFoPZf7kyHT5Qq/giphy.gif)
+
 A Clock designed using React.js and HTML Canvas.
 
 ### installation
